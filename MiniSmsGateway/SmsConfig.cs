@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniSmsGateway
 {
-    internal class SmsConfig
+    public class SmsConfig
     {
         public string SMSApiUrl { get; set; } = "";
         public string ApiKey { get; set; } = "";
