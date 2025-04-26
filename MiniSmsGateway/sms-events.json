@@ -1,0 +1,3 @@
+{"Timestamp":"2025-04-26T15:46:24.9903555Z","Reference":"TEST-001","PhoneNumbers":["\u002B212612345671"],"Statuses":["Success"],"Severity":"Low","Message":"Testing..."}
+{"Timestamp":"2025-04-26T15:47:14.8264899Z","Reference":"TEST-001","PhoneNumbers":["\u002B212612345670"],"Statuses":["Failed"],"Severity":"Low","Message":"Testing..."}
+{"Timestamp":"2025-04-26T15:47:50.2042868Z","Reference":"TEST-001","PhoneNumbers":["\u002B212612345670","\u002B212612345677"],"Statuses":["Failed","Success"],"Severity":"Low","Message":"Testing..."}

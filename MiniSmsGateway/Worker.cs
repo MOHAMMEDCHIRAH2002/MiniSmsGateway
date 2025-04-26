@@ -10,12 +10,14 @@ namespace MiniSmsGateway
         private readonly ISmsApiClient _smsApiClient;
         private readonly ILogger<Worker> _logger;
         private readonly SmsConfig _config;
+        private readonly SmsLogger _smsLogger ;
 
-        public Worker(ILogger<Worker> logger, IOptions<SmsConfig> config, ISmsApiClient smsApiClient)
+        public Worker(ILogger<Worker> logger, IOptions<SmsConfig> config, ISmsApiClient smsApiClient, SmsLogger smsLogger)
         {
             _logger = logger;
             _config = config.Value;
             _smsApiClient = smsApiClient;
+            _smsLogger = smsLogger;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -75,6 +77,11 @@ namespace MiniSmsGateway
                     {
                         _logger.LogInformation($"📤 Number: {request.PhoneNumbers[i]} - Status: {results[i]}");
                     }
+
+
+                    //add results to sms-events.json for audit in the future
+                    await _smsLogger.LogSmsAsync(request, results);
+                    _logger.LogInformation("📝 SMS processing logged into sms-events.json");
 
                     // Create Success Response
                     context.Response.StatusCode = 202;
