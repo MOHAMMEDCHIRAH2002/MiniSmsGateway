@@ -67,7 +67,16 @@ namespace MiniSmsGateway
 
                     //Response
                     context.Response.StatusCode = 202;
-                    var buffer= Encoding.UTF8.GetBytes("SMS en cours de traitement.");
+                    context.Response.ContentType = "application/json";
+
+                    var jsonResponse = JsonSerializer.Serialize(
+                        new
+                        {
+                            message = "SMS en cours de traitement.",
+                        }
+                        );
+                    var buffer= Encoding.UTF8.GetBytes(jsonResponse);
+                    
                     await context.Response.OutputStream.WriteAsync(buffer);
                     context.Response.Close();
                 }
