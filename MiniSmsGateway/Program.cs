@@ -5,6 +5,8 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services.Configure<SmsConfig>(
 builder.Configuration.GetSection("SmsGateway"));
+builder.Services.AddSingleton<ISmsApiClient, MockSmsApiClient>();
+
 
 builder.Services.AddHostedService<Worker>();
 
